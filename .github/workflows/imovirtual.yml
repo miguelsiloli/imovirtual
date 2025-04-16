@@ -1,0 +1,44 @@
+name: Imovirtual Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r imovirtual/src/requirements.txt
+
+      - name: Create .env file
+        run: |
+          echo "TYPE=${{ secrets.TYPE }}" > .env
+          echo "PROJECT_ID=${{ secrets.PROJECT_ID }}" >> .env
+          echo "PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }}" >> .env
+          echo "PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}" >> .env
+          echo "CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}" >> .env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "AUTH_URI=${{ secrets.AUTH_URI }}" >> .env
+          echo "TOKEN_URI=${{ secrets.TOKEN_URI }}" >> .env
+          echo "AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}" >> .env
+          echo "CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}" >> .env
+          echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" >> .env
+          echo "GCS_FOLDER_PATH=${{ secrets.GCS_FOLDER_PATH }}" >> .env
+        shell: bash
+
+      - name: Run imovirtual_main.py
+        run: python imovirtual/imovirtual_main.py
+        shell: bash
