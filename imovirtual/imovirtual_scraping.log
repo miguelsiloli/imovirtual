@@ -1,0 +1,30 @@
+2025-04-16 20:52:53,394 - INFO - [main.py:36] - <module>() - Using bucket: miguelsiloli-housing-data
+2025-04-16 20:52:53,394 - INFO - [main.py:37] - <module>() - Using subfolder path: staging/imovirtual
+2025-04-16 20:52:53,394 - INFO - [gcs_api.py:115] - find_latest_file_in_gcs() - Searching for latest '.parquet' file by timestamp in: gs://miguelsiloli-housing-data/staging/imovirtual/
+2025-04-16 20:52:53,428 - INFO - [gcs_api.py:65] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-04-16 20:52:53,747 - INFO - [gcs_api.py:151] - find_latest_file_in_gcs() - Top 3 latest files by timestamp:
+2025-04-16 20:52:53,747 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   1. staging/imovirtual/imovirtual_2025-04-16.parquet (created: 2025-04-16 16:47:58.910000+00:00)
+2025-04-16 20:52:53,747 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   2. staging/imovirtual/imovirtual_2025-04-15.parquet (created: 2025-04-15 21:12:40.396000+00:00)
+2025-04-16 20:52:53,747 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   3. staging/imovirtual/imovirtual_2025-04-14.parquet (created: 2025-04-14 22:54:32.200000+00:00)
+2025-04-16 20:52:53,747 - INFO - [gcs_api.py:160] - find_latest_file_in_gcs() - Latest file found (by timestamp): gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-04-16.parquet
+2025-04-16 20:52:53,747 - INFO - [gcs_api.py:161] - find_latest_file_in_gcs() -   Created: 2025-04-16 16:47:58.910000+00:00
+2025-04-16 20:52:53,748 - INFO - [gcs_api.py:162] - find_latest_file_in_gcs() -   Updated: 2025-04-16 16:47:58.910000+00:00
+2025-04-16 20:52:53,748 - INFO - [gcs_api.py:163] - find_latest_file_in_gcs() -   Size: 5149397 bytes
+2025-04-16 20:52:53,748 - INFO - [gcs_api.py:188] - read_parquet_from_gcs() - Reading Parquet file from GCS: gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-04-16.parquet
+2025-04-16 20:52:53,781 - INFO - [gcs_api.py:65] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-04-16 20:52:54,822 - INFO - [gcs_api.py:217] - read_parquet_from_gcs() - Successfully read Parquet file with GCS client: 13891 rows
+2025-04-16 20:52:54,822 - INFO - [gcs_api.py:236] - process_data() - Starting transformation for 13891 raw records.
+2025-04-16 20:52:54,922 - INFO - [gcs_api.py:328] - process_data() - Successfully transformed data. Resulting shape: (13891, 39)
+2025-04-16 20:52:54,922 - INFO - [gcs_api.py:236] - process_data() - Starting transformation for 13891 raw records.
+2025-04-16 20:52:55,034 - INFO - [gcs_api.py:328] - process_data() - Successfully transformed data. Resulting shape: (13891, 39)
+2025-04-16 20:52:55,071 - INFO - [gcs_api.py:83] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-04-16 20:52:55,570 - INFO - [gcs_api.py:450] - check_existing_keys_in_bigquery() - Creating temporary lookup table with 6360 key pairs
+2025-04-16 20:52:59,902 - INFO - [gcs_api.py:472] - check_existing_keys_in_bigquery() - Checking for existing key pairs in BigQuery
+2025-04-16 20:53:01,589 - INFO - [gcs_api.py:481] - check_existing_keys_in_bigquery() - Found 13891 existing key pairs in BigQuery
+2025-04-16 20:53:01,685 - INFO - [gcs_api.py:486] - check_existing_keys_in_bigquery() - Deleted temporary table poised-space-456813-t0.staging_housing_temp.temp_lookup_1744833175
+2025-04-16 20:53:01,805 - INFO - [gcs_api.py:532] - filter_out_duplicates() - Filtered out 13891 duplicate rows, keeping 0 new rows
+2025-04-16 20:53:01,805 - INFO - [gcs_api.py:362] - load_to_bigquery() - Loading data to BigQuery table: poised-space-456813-t0.staging_housing.staging
+2025-04-16 20:53:01,837 - INFO - [gcs_api.py:83] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-04-16 20:53:04,473 - INFO - [gcs_api.py:380] - load_to_bigquery() - Loaded 0 rows to poised-space-456813-t0.staging_housing.staging
+2025-04-16 20:53:04,473 - INFO - [gcs_api.py:381] - load_to_bigquery() - Table now has 453532 rows total
+2025-04-16 20:53:04,473 - INFO - [main.py:73] - <module>() - Processing completed successfully
