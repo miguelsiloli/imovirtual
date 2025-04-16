@@ -41,5 +41,5 @@ jobs:
         shell: bash
 
       - name: Run imovirtual_main.py
-        run: python cd imovirtual/imovirtual/imovirtual_main.py
+        run: python imovirtual/imovirtual/imovirtual_main.py
         shell: bash
