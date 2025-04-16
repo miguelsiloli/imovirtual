@@ -17,7 +17,7 @@ def main():
 
     date_str = datetime.now().strftime("%Y-%m-%d")
     logging_name = f"imovirtual_scraping_{date_str}.log"
-    csv_file_path = 'imovirtual/imovirtual_catalog.csv'
+    csv_file_path = 'imovirtual/imovirtual/imovirtual_catalog.csv'
     output_dir = os.path.join('raw', 'imovirtual')
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:127.0) Gecko/20100101 Firefox/127.0",
