@@ -3155,3 +3155,8 @@
 2025-04-17 23:00:05,808 - INFO - [graphql_main.py:120] - fetch_imovirtual_data() - Finished processing district: viseu
 2025-04-17 23:00:06,826 - INFO - [graphql_main.py:162] - process_json_files() - Successfully wrote data to raw/imovirtual/imovirtual_2025-04-17.parquet
 2025-04-17 23:00:06,835 - INFO - [graphql_main.py:167] - process_json_files() - Successfully removed JSON files.
+2025-04-17 23:29:03,479 - INFO - [graphql_main.py:102] - fetch_imovirtual_data() - Starting data collection for 18 districts
+2025-04-17 23:29:05,832 - INFO - [graphql_main.py:62] - fetch_district_data() - Successfully processed ID beja/aljustrel with 0 pages
+2025-04-17 23:29:05,848 - INFO - [graphql_main.py:62] - fetch_district_data() - Successfully processed ID braganca/alfandega-da-fe with 1 pages
+2025-04-17 23:29:05,951 - INFO - [graphql_main.py:62] - fetch_district_data() - Successfully processed ID braga/amares with 1 pages
+2025-04-17 23:29:05,955 - INFO - [graphql_main.py:62] - fetch_district_data() - Successfully processed ID aveiro/agueda with 1 pages

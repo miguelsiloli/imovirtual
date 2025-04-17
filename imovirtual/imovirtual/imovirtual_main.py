@@ -37,6 +37,9 @@ def main():
     }
     base_url_template = "https://www.imovirtual.com/_next/data/{}/pt/resultados/arrendar/apartamento/{}.json"
 
+    bucket_name = os.environ.get("GCS_BUCKET_NAME")
+    gcs_folder_path = os.environ.get("GCS_SUBFOLDER_PATH")
+
     # Retrieve Google Cloud credentials from environment variables
     credentials = {
         "type": os.getenv("TYPE"),
@@ -50,6 +53,7 @@ def main():
         "auth_provider_x509_cert_url": os.getenv("AUTH_PROVIDER_X509_CERT_URL"),
         "client_x509_cert_url": os.getenv("CLIENT_X509_CERT_URL")
     }
+    print(credentials, bucket_name, gcs_folder_path)
     configure_logging(logging_name = logging_name)
 
     source = "imovirtual"
@@ -67,8 +71,6 @@ def main():
         filename=gcs_target_file,
         workers=4
     )
-    bucket_name = os.environ.get("GCS_BUCKET_NAME")
-    gcs_folder_path = os.environ.get("GCS_FOLDER_PATH")
 
     upload_to_gcs(
         bucket_name=bucket_name,
