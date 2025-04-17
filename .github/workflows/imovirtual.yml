@@ -1,29 +1,26 @@
 name: Imovirtual Workflow
-
 on:
   push:
     branches:
       - main
-
+  schedule:
+    # Runs at 6 AM UTC every day
+    - cron: '0 6 * * *'
 jobs:
   run_script:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.10.6'
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           cd imovirtual/imovirtual
           pip install -r src/requirements.txt
-
       - name: Create .env file
         run: |
           echo "TYPE=${{ secrets.TYPE }}" > .env
@@ -39,7 +36,6 @@ jobs:
           echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" >> .env
           echo "GCS_FOLDER_PATH=${{ secrets.GCS_FOLDER_PATH }}" >> .env
         shell: bash
-
       - name: Run imovirtual_main.py
         run: python imovirtual/imovirtual/imovirtual_main.py
         shell: bash
