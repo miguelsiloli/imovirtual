@@ -47,5 +47,5 @@ jobs:
         shell: bash
 
       - name: Run events/gcs_daily_incremental_load/main.py
-        run: python events/gcs_daily_incremental_load/main.py
+        run: python imovirtual/events/gcs_daily_incremental_load/main.py
         shell: bash
