@@ -1,5 +1,5 @@
 pandas
 google-cloud-storage
 google-cloud-bigquery
-google-oauth2
+google-auth
 python-dotenv
