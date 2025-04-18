@@ -6,6 +6,7 @@ on:
   schedule:
     # Runs at 6 AM UTC every day
     - cron: '0 6 * * *'
+  workflow_dispatch:
 jobs:
   run_script:
     runs-on: ubuntu-latest
@@ -34,7 +35,7 @@ jobs:
           echo "AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}" >> .env
           echo "CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}" >> .env
           echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" >> .env
-          echo "GCS_FOLDER_PATH=${{ secrets.GCS_FOLDER_PATH }}" >> .env
+          echo "GCS_SUBFOLDER_PATH=${{ secrets.GCS_SUBFOLDER_PATH }}" >> .env
         shell: bash
       - name: Run imovirtual_main.py
         run: python imovirtual/imovirtual/imovirtual_main.py
