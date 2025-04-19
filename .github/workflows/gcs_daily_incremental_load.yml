@@ -5,7 +5,7 @@ on:
     workflows: ["Imovirtual Workflow"]
     types:
       - completed
-
+  workflow_dispatch:
 jobs:
   run_script:
     runs-on: ubuntu-latest
