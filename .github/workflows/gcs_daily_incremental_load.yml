@@ -28,22 +28,22 @@ jobs:
       - name: Create .env file
         run: |
           echo "TYPE=${{ secrets.TYPE }}" > .env
-          echo "PROJECT_ID=${{ secrets.PROJECT_ID }}" > .env
-          echo "PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }}" > .env
-          echo "PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}" > .env
-          echo "CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}" > .env
-          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" > .env
-          echo "AUTH_URI=${{ secrets.AUTH_URI }}" > .env
-          echo "TOKEN_URI=${{ secrets.TOKEN_URI }}" > .env
-          echo "AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}" > .env
-          echo "CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}" > .env
-          echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" > .env
-          echo "GCS_SUBFOLDER_PATH=${{ secrets.GCS_SUBFOLDER_PATH }}" > .env
-          echo "BQ_PROJECT_ID=${{ secrets.PROJECT_ID }}" > .env
-          echo "BQ_DATASET_ID=${{ secrets.BQ_DATASET_ID }}" > .env
-          echo "BQ_TABLE_ID=${{ secrets.BQ_TABLE_ID }}" > .env
-          echo "BQ_WRITE_DISPOSITION=WRITE_APPEND" > .env
-          echo "BQ_CREATE_DISPOSITION=CREATE_NEVER" > .env
+          echo "PROJECT_ID=${{ secrets.PROJECT_ID }}" >> .env
+          echo "PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }}" >> .env
+          echo "PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}" >> .env
+          echo "CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}" >> .env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "AUTH_URI=${{ secrets.AUTH_URI }}" >> .env
+          echo "TOKEN_URI=${{ secrets.TOKEN_URI }}" >> .env
+          echo "AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}" >> .env
+          echo "CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}" >> .env
+          echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" >> .env
+          echo "GCS_SUBFOLDER_PATH=${{ secrets.GCS_SUBFOLDER_PATH }}" >> .env
+          echo "BQ_PROJECT_ID=${{ secrets.PROJECT_ID }}" >> .env
+          echo "BQ_DATASET_ID=${{ secrets.BQ_DATASET_ID }}" >> .env
+          echo "BQ_TABLE_ID=${{ secrets.BQ_TABLE_ID }}" >> .env
+          echo "BQ_WRITE_DISPOSITION=WRITE_APPEND" >> .env
+          echo "BQ_CREATE_DISPOSITION=CREATE_NEVER" >> .env
         shell: bash
 
       - name: Run events/gcs_daily_incremental_load/main.py
