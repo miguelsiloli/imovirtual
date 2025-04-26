@@ -39,11 +39,24 @@ jobs:
           echo "CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}" >> .env
           echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" >> .env
           echo "GCS_SUBFOLDER_PATH=${{ secrets.GCS_SUBFOLDER_PATH }}" >> .env
-          echo "BQ_PROJECT_ID=${{ secrets.PROJECT_ID }}" >> .env
+          
+          # Added Prefect credentials
+          echo "PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}" >> .env
+          echo "PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}" >> .env
+          echo "PREFECT_API_DATABASE_CONNECTION_URL=${{ secrets.PREFECT_API_DATABASE_CONNECTION_URL }}" >> .env
+          echo "PREFECT_API_DATABASE_CONNECT_ARGS=${{ secrets.PREFECT_API_DATABASE_CONNECT_ARGS }}" >> .env
+          
+          # Added additional GCP configuration
+          echo "GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}" >> .env
+          echo "GCP_REGION=${{ secrets.GCP_REGION }}" >> .env
+          echo "BQ_PROJECT_ID=${{ secrets.BQ_PROJECT_ID }}" >> .env
           echo "BQ_DATASET_ID=${{ secrets.BQ_DATASET_ID }}" >> .env
           echo "BQ_TABLE_ID=${{ secrets.BQ_TABLE_ID }}" >> .env
-          echo "BQ_WRITE_DISPOSITION=WRITE_APPEND" >> .env
-          echo "BQ_CREATE_DISPOSITION=CREATE_NEVER" >> .env
+          echo "BQ_TABLE_FULL_ID=${{ secrets.BQ_TABLE_FULL_ID }}" >> .env
+          echo "BQ_WRITE_DISPOSITION=${{ secrets.BQ_WRITE_DISPOSITION }}" >> .env
+          echo "BQ_CREATE_DISPOSITION=${{ secrets.BQ_CREATE_DISPOSITION }}" >> .env
+          echo "BQ_SCHEMA_UPDATE_OPTIONS=${{ secrets.BQ_SCHEMA_UPDATE_OPTIONS }}" >> .env
+          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> .env
         shell: bash
 
       - name: Run events/gcs_daily_incremental_load/main.py

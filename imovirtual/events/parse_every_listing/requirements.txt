@@ -1,0 +1,9 @@
+requests
+beautifulsoup4
+lxml
+pandas
+python-dotenv
+prefect
+google-cloud-storage
+google-cloud-bigquery
+tqdm

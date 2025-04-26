@@ -1,2 +1,6 @@
 .env
 raw/
+imovirtual/utils_scripts/CAOP_data/Continente_CAOP2024.gpkg
+data
+imovirtual/utils_scripts/OSM_data/portugal-latest.osm.pbf
+imovirtual/utils_scripts/CAOP_data/caop_freguesias_4326.geojsonl

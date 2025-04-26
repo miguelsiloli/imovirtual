@@ -53,7 +53,6 @@ def main():
         "auth_provider_x509_cert_url": os.getenv("AUTH_PROVIDER_X509_CERT_URL"),
         "client_x509_cert_url": os.getenv("CLIENT_X509_CERT_URL")
     }
-    print(credentials, bucket_name, gcs_folder_path)
     configure_logging(logging_name = logging_name)
 
     source = "imovirtual"
