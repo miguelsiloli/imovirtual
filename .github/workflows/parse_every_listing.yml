@@ -1,4 +1,4 @@
-name: GCS Daily Incremental Load
+name: Parse every listing
 
 on:
   workflow_run:
@@ -23,7 +23,7 @@ jobs:
         run: python -m pip install --upgrade pip
       - name: Install dependencies
         run: |
-          pip install -r imovirtual/events/gcs_daily_incremental_load/requirements.txt
+          pip install -r imovirtual/events/parse_every_listing/requirements.txt
 
       - name: Create .env file
         run: |
@@ -57,6 +57,6 @@ jobs:
           echo "BQ_CREATE_DISPOSITION=${{ secrets.BQ_CREATE_DISPOSITION }}" >> .env
           echo "BQ_SCHEMA_UPDATE_OPTIONS=${{ secrets.BQ_SCHEMA_UPDATE_OPTIONS }}" >> .env
           echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> .env
-      - name: Run events/gcs_daily_incremental_load/main.py
+      - name: Run imovirtual/events/parse_every_listing/main.py
         run: python imovirtual/events/parse_every_listing/main.py
         shell: bash
