@@ -1,0 +1,487 @@
+2025-04-26 17:20:18,975 - INFO - [gcs_with_prefect_v2.py:786] - <module>() - Running script directly, initiating Prefect flow...
+2025-04-26 17:20:19,827 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flows/ "HTTP/1.1 201 Created"
+2025-04-26 17:20:20,048 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flow_runs/ "HTTP/1.1 201 Created"
+2025-04-26 17:20:20,263 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flow_runs/64ddaa7a-1e48-455c-9209-9cb9a86c35b3/set_state "HTTP/1.1 201 Created"
+2025-04-26 17:20:20,412 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: GET https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flow_runs/64ddaa7a-1e48-455c-9209-9cb9a86c35b3 "HTTP/1.1 200 OK"
+2025-04-26 17:20:20,417 - INFO - [flow_engine.py:651] - setup_run_context() - Beginning flow run 'laughing-smilodon' for flow 'GCS Parquet to BigQuery ETL'
+2025-04-26 17:20:20,420 - INFO - [flow_engine.py:656] - setup_run_context() - View at https://app.prefect.cloud/account/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspace/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/runs/flow-run/64ddaa7a-1e48-455c-9209-9cb9a86c35b3
+2025-04-26 17:20:20,420 - INFO - [gcs_with_prefect_v2.py:721] - gcs_to_bq_flow() - Starting GCS to BigQuery flow for bucket 'miguelsiloli-housing-data' and prefix 'staging/imovirtual'
+2025-04-26 17:20:20,820 - INFO - [gcs_with_prefect_v2.py:130] - find_latest_file_in_gcs_task() - Searching for latest '.parquet' file by timestamp in: gs://miguelsiloli-housing-data/staging/imovirtual/
+2025-04-26 17:20:20,872 - INFO - [gcs_with_prefect_v2.py:75] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-04-26 17:20:21,144 - INFO - [gcs_with_prefect_v2.py:166] - find_latest_file_in_gcs_task() - Top 5 latest files by timestamp (newest first):
+2025-04-26 17:20:21,145 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   1. staging/imovirtual/imovirtual_2025-04-26.parquet (created: 2025-04-26 16:10:58.816000+00:00)
+2025-04-26 17:20:21,146 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   2. staging/imovirtual/imovirtual_2025-04-23.parquet (created: 2025-04-23 07:17:32.750000+00:00)
+2025-04-26 17:20:21,146 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   3. staging/imovirtual/imovirtual_2025-04-22.parquet (created: 2025-04-22 07:16:48.652000+00:00)
+2025-04-26 17:20:21,147 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   4. staging/imovirtual/imovirtual_2025-04-21.parquet (created: 2025-04-21 07:18:40.283000+00:00)
+2025-04-26 17:20:21,148 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   5. staging/imovirtual/imovirtual_2025-04-20.parquet (created: 2025-04-20 07:16:02.433000+00:00)
+2025-04-26 17:20:21,149 - INFO - [gcs_with_prefect_v2.py:174] - find_latest_file_in_gcs_task() - Latest file found (by timestamp): gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-04-26.parquet
+2025-04-26 17:20:21,149 - INFO - [gcs_with_prefect_v2.py:175] - find_latest_file_in_gcs_task() -   Created: 2025-04-26 16:10:58.816000+00:00
+2025-04-26 17:20:21,149 - INFO - [gcs_with_prefect_v2.py:176] - find_latest_file_in_gcs_task() -   Updated: 2025-04-26 16:10:58.816000+00:00
+2025-04-26 17:20:21,150 - INFO - [gcs_with_prefect_v2.py:177] - find_latest_file_in_gcs_task() -   Size: 5139987 bytes
+2025-04-26 17:20:21,153 - INFO - [task_engine.py:285] - log_finished_message() - Finished in state Completed()
+2025-04-26 17:20:21,186 - INFO - [gcs_with_prefect_v2.py:199] - read_parquet_from_gcs_task() - Reading Parquet file from GCS: gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-04-26.parquet
+2025-04-26 17:20:21,219 - INFO - [gcs_with_prefect_v2.py:75] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-04-26 17:20:21,438 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: GET https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flows/fe1e503c-ae60-488a-8914-5fa20d889b0d "HTTP/1.1 200 OK"
+2025-04-26 17:20:22,330 - INFO - [gcs_with_prefect_v2.py:225] - read_parquet_from_gcs_task() - Successfully read Parquet file: 13808 rows, 41 columns
+2025-04-26 17:20:22,851 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:20:22,853 - INFO - [task_engine.py:285] - log_finished_message() - Finished in state Completed()
+2025-04-26 17:20:23,214 - INFO - [gcs_with_prefect_v2.py:255] - process_data_task() - Starting transformation for 13808 raw records.
+2025-04-26 17:20:23,429 - INFO - [gcs_with_prefect_v2.py:417] - process_data_task() - Successfully transformed data. Resulting shape: (13808, 39)
+2025-04-26 17:20:23,431 - INFO - [task_engine.py:285] - log_finished_message() - Finished in state Completed()
+2025-04-26 17:20:23,549 - INFO - [gcs_with_prefect_v2.py:460] - check_existing_keys_in_bigquery_task() - Checking 6324 unique (slug, ingestionDate) pairs against BigQuery table `poised-space-456813-t0.staging_housing.staging`
+2025-04-26 17:20:23,581 - INFO - [gcs_with_prefect_v2.py:97] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-04-26 17:20:24,228 - ERROR - [gcs_with_prefect_v2.py:497] - check_existing_keys_in_bigquery_task() - Error querying BigQuery for existing keys (batch 1): 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: 3059ca7d-e7f3-4e96-b78a-820a1e8e82ec
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 488, in check_existing_keys_in_bigquery_task
+    results = query_job.result() # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: 3059ca7d-e7f3-4e96-b78a-820a1e8e82ec
+
+2025-04-26 17:20:24,230 - INFO - [task_engine.py:553] - handle_retry() - Task run failed with exception: Exception('Failed during BigQuery key check query: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]\n\nLocation: europe-southwest1\nJob ID: 3059ca7d-e7f3-4e96-b78a-820a1e8e82ec\n') - Retry 1/2 will start 10 second(s) from now
+2025-04-26 17:20:25,009 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:20:34,304 - INFO - [gcs_with_prefect_v2.py:460] - check_existing_keys_in_bigquery_task() - Checking 6324 unique (slug, ingestionDate) pairs against BigQuery table `poised-space-456813-t0.staging_housing.staging`
+2025-04-26 17:20:34,354 - INFO - [gcs_with_prefect_v2.py:97] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-04-26 17:20:34,879 - ERROR - [gcs_with_prefect_v2.py:497] - check_existing_keys_in_bigquery_task() - Error querying BigQuery for existing keys (batch 1): 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: de4a084c-3376-43dd-84c7-ed6f668f26f5
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 488, in check_existing_keys_in_bigquery_task
+    results = query_job.result() # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: de4a084c-3376-43dd-84c7-ed6f668f26f5
+
+2025-04-26 17:20:34,881 - INFO - [task_engine.py:553] - handle_retry() - Task run failed with exception: Exception('Failed during BigQuery key check query: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]\n\nLocation: europe-southwest1\nJob ID: de4a084c-3376-43dd-84c7-ed6f668f26f5\n') - Retry 2/2 will start 10 second(s) from now
+2025-04-26 17:20:35,150 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:20:44,953 - INFO - [gcs_with_prefect_v2.py:460] - check_existing_keys_in_bigquery_task() - Checking 6324 unique (slug, ingestionDate) pairs against BigQuery table `poised-space-456813-t0.staging_housing.staging`
+2025-04-26 17:20:44,986 - INFO - [gcs_with_prefect_v2.py:97] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-04-26 17:20:45,307 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:20:45,420 - ERROR - [gcs_with_prefect_v2.py:497] - check_existing_keys_in_bigquery_task() - Error querying BigQuery for existing keys (batch 1): 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 488, in check_existing_keys_in_bigquery_task
+    results = query_job.result() # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95
+
+2025-04-26 17:20:45,422 - ERROR - [task_engine.py:565] - handle_retry() - Task run failed with exception: Exception('Failed during BigQuery key check query: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]\n\nLocation: europe-southwest1\nJob ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95\n') - Retries are exhausted
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 488, in check_existing_keys_in_bigquery_task
+    results = query_job.result() # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 819, in run_context
+    yield self
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 1395, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 836, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 500, in check_existing_keys_in_bigquery_task
+    raise Exception(f"Failed during BigQuery key check query: {e}")
+Exception: Failed during BigQuery key check query: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95
+
+2025-04-26 17:20:45,426 - ERROR - [task_engine.py:285] - log_finished_message() - Finished in state Failed('Task run encountered an exception Exception: Failed during BigQuery key check query: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]\n\nLocation: europe-southwest1\nJob ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95\n')
+2025-04-26 17:20:45,427 - ERROR - [flow_engine.py:767] - run_context() - Encountered exception during execution: Exception('Failed during BigQuery key check query: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]\n\nLocation: europe-southwest1\nJob ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95\n')
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 488, in check_existing_keys_in_bigquery_task
+    results = query_job.result() # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/flow_engine.py", line 763, in run_context
+    yield self
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/flow_engine.py", line 1370, in run_flow_sync
+    engine.call_flow_fn()
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/flow_engine.py", line 783, in call_flow_fn
+    result = call_with_parameters(self.flow.fn, self.parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 744, in gcs_to_bq_flow
+    existing_keys = check_existing_keys_in_bigquery_task(df=transformed_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/tasks.py", line 1058, in __call__
+    return run_task(
+           ^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 1610, in run_task
+    return run_task_sync(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 1397, in run_task_sync
+    return engine.state if return_type == "state" else engine.result()
+                                                       ^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 490, in result
+    raise self._raised
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 819, in run_context
+    yield self
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 1395, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 836, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 500, in check_existing_keys_in_bigquery_task
+    raise Exception(f"Failed during BigQuery key check query: {e}")
+Exception: Failed during BigQuery key check query: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]
+
+Location: europe-southwest1
+Job ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95
+
+2025-04-26 17:20:45,784 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flow_runs/64ddaa7a-1e48-455c-9209-9cb9a86c35b3/set_state "HTTP/1.1 201 Created"
+2025-04-26 17:20:45,785 - INFO - [flow_engine.py:724] - initialize_run() - Finished in state Failed('Flow run encountered an exception: Exception: Failed during BigQuery key check query: 400 No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]; reason: invalidQuery, location: query, message: No matching signature for operator IN UNNEST for argument types: STRUCT<STRING, DATE>, ARRAY<STRUCT<STRING, STRING>> at [4:37]\n\nLocation: europe-southwest1\nJob ID: d33f8f66-ae52-4b0b-92cc-53b7d7f43c95\n')
+2025-04-26 17:20:47,104 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:23:59,030 - INFO - [gcs_with_prefect_v2.py:792] - <module>() - Running script directly, initiating Prefect flow...
+2025-04-26 17:23:59,509 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flows/ "HTTP/1.1 200 OK"
+2025-04-26 17:23:59,702 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flow_runs/ "HTTP/1.1 201 Created"
+2025-04-26 17:23:59,897 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flow_runs/7070a1a4-478f-4125-8081-eb10773a44fd/set_state "HTTP/1.1 201 Created"
+2025-04-26 17:24:00,063 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: GET https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flow_runs/7070a1a4-478f-4125-8081-eb10773a44fd "HTTP/1.1 200 OK"
+2025-04-26 17:24:00,067 - INFO - [flow_engine.py:651] - setup_run_context() - Beginning flow run 'daft-lionfish' for flow 'GCS Parquet to BigQuery ETL'
+2025-04-26 17:24:00,069 - INFO - [flow_engine.py:656] - setup_run_context() - View at https://app.prefect.cloud/account/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspace/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/runs/flow-run/7070a1a4-478f-4125-8081-eb10773a44fd
+2025-04-26 17:24:00,070 - INFO - [gcs_with_prefect_v2.py:727] - gcs_to_bq_flow() - Starting GCS to BigQuery flow for bucket 'miguelsiloli-housing-data' and prefix 'staging/imovirtual'
+2025-04-26 17:24:00,124 - INFO - [gcs_with_prefect_v2.py:130] - find_latest_file_in_gcs_task() - Searching for latest '.parquet' file by timestamp in: gs://miguelsiloli-housing-data/staging/imovirtual/
+2025-04-26 17:24:00,157 - INFO - [gcs_with_prefect_v2.py:75] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-04-26 17:24:00,436 - INFO - [gcs_with_prefect_v2.py:166] - find_latest_file_in_gcs_task() - Top 5 latest files by timestamp (newest first):
+2025-04-26 17:24:00,437 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   1. staging/imovirtual/imovirtual_2025-04-26.parquet (created: 2025-04-26 16:10:58.816000+00:00)
+2025-04-26 17:24:00,437 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   2. staging/imovirtual/imovirtual_2025-04-23.parquet (created: 2025-04-23 07:17:32.750000+00:00)
+2025-04-26 17:24:00,438 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   3. staging/imovirtual/imovirtual_2025-04-22.parquet (created: 2025-04-22 07:16:48.652000+00:00)
+2025-04-26 17:24:00,438 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   4. staging/imovirtual/imovirtual_2025-04-21.parquet (created: 2025-04-21 07:18:40.283000+00:00)
+2025-04-26 17:24:00,438 - INFO - [gcs_with_prefect_v2.py:169] - find_latest_file_in_gcs_task() -   5. staging/imovirtual/imovirtual_2025-04-20.parquet (created: 2025-04-20 07:16:02.433000+00:00)
+2025-04-26 17:24:00,439 - INFO - [gcs_with_prefect_v2.py:174] - find_latest_file_in_gcs_task() - Latest file found (by timestamp): gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-04-26.parquet
+2025-04-26 17:24:00,439 - INFO - [gcs_with_prefect_v2.py:175] - find_latest_file_in_gcs_task() -   Created: 2025-04-26 16:10:58.816000+00:00
+2025-04-26 17:24:00,440 - INFO - [gcs_with_prefect_v2.py:176] - find_latest_file_in_gcs_task() -   Updated: 2025-04-26 16:10:58.816000+00:00
+2025-04-26 17:24:00,440 - INFO - [gcs_with_prefect_v2.py:177] - find_latest_file_in_gcs_task() -   Size: 5139987 bytes
+2025-04-26 17:24:00,442 - INFO - [task_engine.py:285] - log_finished_message() - Finished in state Completed()
+2025-04-26 17:24:01,000 - INFO - [task_engine.py:285] - log_finished_message() - Finished in state Cached(type=COMPLETED)
+2025-04-26 17:24:01,200 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: GET https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flows/fe1e503c-ae60-488a-8914-5fa20d889b0d "HTTP/1.1 200 OK"
+2025-04-26 17:24:01,384 - INFO - [gcs_with_prefect_v2.py:255] - process_data_task() - Starting transformation for 13808 raw records.
+2025-04-26 17:24:01,533 - INFO - [gcs_with_prefect_v2.py:417] - process_data_task() - Successfully transformed data. Resulting shape: (13808, 39)
+2025-04-26 17:24:01,535 - INFO - [task_engine.py:285] - log_finished_message() - Finished in state Completed()
+2025-04-26 17:24:01,627 - INFO - [gcs_with_prefect_v2.py:460] - check_existing_keys_in_bigquery_task() - Checking 6324 unique (slug, ingestionDate) pairs against BigQuery table `poised-space-456813-t0.staging_housing.staging`
+2025-04-26 17:24:01,662 - INFO - [gcs_with_prefect_v2.py:97] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-04-26 17:24:02,046 - ERROR - [gcs_with_prefect_v2.py:507] - check_existing_keys_in_bigquery_task() - Error querying BigQuery for existing keys (batch 1): 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: c428d68a-aab1-43ae-9fd7-46701279bf37
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 498, in check_existing_keys_in_bigquery_task
+    results = query_job.result()  # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: c428d68a-aab1-43ae-9fd7-46701279bf37
+
+2025-04-26 17:24:02,048 - INFO - [task_engine.py:553] - handle_retry() - Task run failed with exception: Exception('Failed during BigQuery key check query: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]\n\nLocation: europe-southwest1\nJob ID: c428d68a-aab1-43ae-9fd7-46701279bf37\n') - Retry 1/2 will start 10 second(s) from now
+2025-04-26 17:24:02,325 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:24:12,116 - INFO - [gcs_with_prefect_v2.py:460] - check_existing_keys_in_bigquery_task() - Checking 6324 unique (slug, ingestionDate) pairs against BigQuery table `poised-space-456813-t0.staging_housing.staging`
+2025-04-26 17:24:12,151 - INFO - [gcs_with_prefect_v2.py:97] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-04-26 17:24:12,464 - ERROR - [gcs_with_prefect_v2.py:507] - check_existing_keys_in_bigquery_task() - Error querying BigQuery for existing keys (batch 1): 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: e6b993aa-e4fd-41eb-bf84-ef5f58e35d35
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 498, in check_existing_keys_in_bigquery_task
+    results = query_job.result()  # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: e6b993aa-e4fd-41eb-bf84-ef5f58e35d35
+
+2025-04-26 17:24:12,465 - INFO - [task_engine.py:553] - handle_retry() - Task run failed with exception: Exception('Failed during BigQuery key check query: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]\n\nLocation: europe-southwest1\nJob ID: e6b993aa-e4fd-41eb-bf84-ef5f58e35d35\n') - Retry 2/2 will start 10 second(s) from now
+2025-04-26 17:24:12,468 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:24:14,607 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:24:22,531 - INFO - [gcs_with_prefect_v2.py:460] - check_existing_keys_in_bigquery_task() - Checking 6324 unique (slug, ingestionDate) pairs against BigQuery table `poised-space-456813-t0.staging_housing.staging`
+2025-04-26 17:24:22,563 - INFO - [gcs_with_prefect_v2.py:97] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-04-26 17:24:22,754 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"
+2025-04-26 17:24:22,938 - ERROR - [gcs_with_prefect_v2.py:507] - check_existing_keys_in_bigquery_task() - Error querying BigQuery for existing keys (batch 1): 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 498, in check_existing_keys_in_bigquery_task
+    results = query_job.result()  # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5
+
+2025-04-26 17:24:22,939 - ERROR - [task_engine.py:565] - handle_retry() - Task run failed with exception: Exception('Failed during BigQuery key check query: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]\n\nLocation: europe-southwest1\nJob ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5\n') - Retries are exhausted
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 498, in check_existing_keys_in_bigquery_task
+    results = query_job.result()  # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 819, in run_context
+    yield self
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 1395, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 836, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 509, in check_existing_keys_in_bigquery_task
+    raise Exception(f"Failed during BigQuery key check query: {e}")
+Exception: Failed during BigQuery key check query: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5
+
+2025-04-26 17:24:22,943 - ERROR - [task_engine.py:285] - log_finished_message() - Finished in state Failed('Task run encountered an exception Exception: Failed during BigQuery key check query: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]\n\nLocation: europe-southwest1\nJob ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5\n')
+2025-04-26 17:24:22,944 - ERROR - [flow_engine.py:767] - run_context() - Encountered exception during execution: Exception('Failed during BigQuery key check query: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]\n\nLocation: europe-southwest1\nJob ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5\n')
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 498, in check_existing_keys_in_bigquery_task
+    results = query_job.result()  # Wait for completion
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1681, in result
+    while not is_job_done():
+              ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 293, in retry_wrapped_func
+    return retry_target(
+           ^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 153, in retry_target
+    _retry_error_helper(
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_base.py", line 212, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/api_core/retry/retry_unary.py", line 144, in retry_target
+    result = target()
+             ^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/google/cloud/bigquery/job/query.py", line 1630, in is_job_done
+    raise job_failed_exception
+google.api_core.exceptions.BadRequest: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/flow_engine.py", line 763, in run_context
+    yield self
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/flow_engine.py", line 1370, in run_flow_sync
+    engine.call_flow_fn()
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/flow_engine.py", line 783, in call_flow_fn
+    result = call_with_parameters(self.flow.fn, self.parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 750, in gcs_to_bq_flow
+    existing_keys = check_existing_keys_in_bigquery_task(df=transformed_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/tasks.py", line 1058, in __call__
+    return run_task(
+           ^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 1610, in run_task
+    return run_task_sync(**kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 1397, in run_task_sync
+    return engine.state if return_type == "state" else engine.result()
+                                                       ^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 490, in result
+    raise self._raised
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 819, in run_context
+    yield self
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 1395, in run_task_sync
+    engine.call_task_fn(txn)
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/task_engine.py", line 836, in call_task_fn
+    result = call_with_parameters(self.task.fn, parameters)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/prefect/utilities/callables.py", line 210, in call_with_parameters
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py", line 509, in check_existing_keys_in_bigquery_task
+    raise Exception(f"Failed during BigQuery key check query: {e}")
+Exception: Failed during BigQuery key check query: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]
+
+Location: europe-southwest1
+Job ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5
+
+2025-04-26 17:24:23,252 - INFO - [_client.py:1025] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/flow_runs/7070a1a4-478f-4125-8081-eb10773a44fd/set_state "HTTP/1.1 201 Created"
+2025-04-26 17:24:23,253 - INFO - [flow_engine.py:724] - initialize_run() - Finished in state Failed('Flow run encountered an exception: Exception: Failed during BigQuery key check query: 400 Syntax error: Expected ")" but got "(" at [4:33465]; reason: invalidQuery, location: query, message: Syntax error: Expected ")" but got "(" at [4:33465]\n\nLocation: europe-southwest1\nJob ID: 7f594b8b-17ad-4ff2-945e-528c3e9ad0b5\n')
+2025-04-26 17:24:24,523 - INFO - [_client.py:1740] - _send_single_request() - HTTP Request: POST https://api.prefect.cloud/api/accounts/f664a625-d2c2-4256-933a-fa99ca8c3d5d/workspaces/cf4be9d7-3fbc-4f65-bb9f-b4640f5f083f/logs/ "HTTP/1.1 202 Accepted"

@@ -1,6 +1,8 @@
 pandas
 google-cloud-storage
 google-cloud-bigquery
-google-auth
+google-auth # Explicitly add, though often a dependency
+google-auth-oauthlib # Often needed for user auth flows, good practice
+pyarrow # For Parquet reading/writing
+prefect>=2.10 # Use a recent version of Prefect 2
 python-dotenv
-pyarrow
