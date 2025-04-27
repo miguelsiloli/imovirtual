@@ -57,6 +57,14 @@ jobs:
           echo "BQ_CREATE_DISPOSITION=${{ secrets.BQ_CREATE_DISPOSITION }}" >> .env
           echo "BQ_SCHEMA_UPDATE_OPTIONS=${{ secrets.BQ_SCHEMA_UPDATE_OPTIONS }}" >> .env
           echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> .env
+
+      - name: Set up Prefect profile
+        run: |
+          prefect profile create github-actions
+          prefect config set PREFECT_API_URL="${{ secrets.PREFECT_API_URL }}"
+          prefect config set PREFECT_API_KEY="${{ secrets.PREFECT_API_KEY }}"
+          prefect profile use github-actions
+
       - name: Run imovirtual/events/parse_every_listing/main.py
         run: python imovirtual/events/parse_every_listing/main.py
         shell: bash
