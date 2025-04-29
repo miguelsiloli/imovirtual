@@ -214,6 +214,11 @@ def save_data_to_gcs(
         df_output = pd.DataFrame(data_list)
         logger.info(f"DataFrame shape: {df_output.shape}")
 
+        column_to_drop = 'experiments'
+        if column_to_drop in df_output.columns:
+            df_output = df_output.drop("experiments", axis = 1)
+            logger.info(f"Dropping '{column_to_drop}' column before saving to Parquet.")
+
         today_date_str = datetime.now(timezone.utc).strftime('%Y-%m-%d')
         output_filename = f"staging_imovirtual_listings_{today_date_str}.parquet"
         clean_prefix = GCS_OUTPUT_PATH_PREFIX.strip('/') # Use imported constant

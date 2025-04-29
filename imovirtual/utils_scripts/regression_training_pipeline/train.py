@@ -153,10 +153,10 @@ def load_and_clean_data(filepath, columns_to_drop, fillna_config, numeric_cols, 
             print(f"Converting '{col}' to numeric.")
             X[col] = pd.to_numeric(X[col], errors='coerce')
             # Optional: Impute any NaNs created by coercion (e.g., if 'unknown' was forced to numeric)
-            if X[col].isnull().any():
-                median_val = X[col].median()
-                print(f"   Imputing NaNs in '{col}' post-coercion with median ({median_val}).")
-                X[col].fillna(median_val, inplace=True)
+            # if X[col].isnull().any():
+            #     median_val = X[col].median()
+            #     print(f"   Imputing NaNs in '{col}' post-coercion with median ({median_val}).")
+            #     X[col].fillna(median_val, inplace=True)
 
 
     for col in categorical_cols:
