@@ -38,14 +38,7 @@ def get_gcs_credentials_from_env() -> Optional[service_account.Credentials]:
     Loads GCS service account credentials from environment variables.
     Uses Prefect logger if available, otherwise standard logging.
     """
-    try:
-        logger = get_run_logger()
-        log_info = logger.info
-        log_error = logger.error
-    except Exception: # Fallback if not in Prefect context
-        logger = logging.getLogger(__name__)
-        log_info = logger.info
-        log_error = logger.error
+    logger = get_run_logger()
 
     try:
         required_vars = [

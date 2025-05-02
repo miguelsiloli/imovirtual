@@ -5,3 +5,4 @@ pyarrow
 beautifulsoup4
 google-cloud-storage
 python-dotenv
+tenacity

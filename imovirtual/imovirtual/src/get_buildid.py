@@ -1,13 +1,18 @@
 import json
-
 import requests
+import time
 from bs4 import BeautifulSoup
+from tenacity import retry, stop_after_attempt, wait_fixed, retry_if_exception_type
 
-
+@retry(
+    stop=stop_after_attempt(3),  # Stop after 3 attempts
+    wait=wait_fixed(60),  # Wait 60 seconds between retries
+    retry=retry_if_exception_type((requests.exceptions.RequestException, json.JSONDecodeError)),  # Retry on these exceptions
+    reraise=True  # Re-raise the last exception
+)
 def get_buildid():
     # Define the URL
     url = "https://www.imovirtual.com/pt"
-
     # Set headers
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:127.0) Gecko/20100101 Firefox/127.0",
@@ -22,15 +27,22 @@ def get_buildid():
         "Sec-Fetch-Site": "none",
         "Sec-Fetch-User": "?1",
     }
-
+    
     # Fetch the HTML content
     response = requests.get(url, headers=headers)
+    response.raise_for_status()  # Raise an exception for bad responses
     html_content = response.text
-
+    
     # Parse the HTML content
     soup = BeautifulSoup(html_content, "html.parser")
     script_tag = soup.find("script", id="__NEXT_DATA__")
+    
+    # Check if the script tag was found
+    if not script_tag:
+        raise ValueError("Script tag with id '__NEXT_DATA__' not found")
+    
     json_content = script_tag.string
     data = json.loads(json_content)
     build_id = data["buildId"]
+    
     return build_id

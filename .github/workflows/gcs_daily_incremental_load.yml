@@ -1,10 +1,9 @@
 name: GCS Daily Incremental Load
 
 on:
-  workflow_run:
-    workflows: ["Imovirtual Workflow"]
-    types:
-      - completed
+  schedule:
+    # Run at 12:00 AM UTC every day
+    - cron: '0 0 * * *'
   workflow_dispatch:
 jobs:
   run_script:
