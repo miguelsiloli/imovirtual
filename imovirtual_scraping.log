@@ -30,3 +30,108 @@
 2025-04-27 16:00:43,577 - INFO - [gcs_api.py:380] - load_to_bigquery() - Loaded 13808 rows to poised-space-456813-t0.staging_housing.staging
 2025-04-27 16:00:43,577 - INFO - [gcs_api.py:381] - load_to_bigquery() - Table now has 550785 rows total
 2025-04-27 16:00:43,577 - INFO - [main.py:73] - <module>() - Processing completed successfully
+2025-05-02 14:06:47,815 - INFO - [main.py:36] - <module>() - Using bucket: miguelsiloli-housing-data
+2025-05-02 14:06:47,825 - INFO - [main.py:37] - <module>() - Using subfolder path: staging/imovirtual
+2025-05-02 14:06:47,826 - INFO - [gcs_api.py:115] - find_latest_file_in_gcs() - Searching for latest '.parquet' file by timestamp in: gs://miguelsiloli-housing-data/staging/imovirtual/
+2025-05-02 14:06:47,859 - INFO - [gcs_api.py:65] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 14:06:48,781 - INFO - [gcs_api.py:151] - find_latest_file_in_gcs() - Top 5 latest files by timestamp:
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   1. staging/imovirtual/staging_imovirtual_listings_2025-05-02.parquet (created: 2025-05-02 13:02:59.994000+00:00)
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   2. staging/imovirtual/imovirtual_2025-05-02.parquet (created: 2025-05-02 07:18:31.738000+00:00)
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   3. staging/imovirtual/imovirtual_2025-05-01.parquet (created: 2025-05-01 07:18:08.722000+00:00)
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   4. staging/imovirtual/imovirtual_2025-04-30.parquet (created: 2025-04-30 22:07:19.745000+00:00)
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   5. staging/imovirtual/imovirtual_2025-04-27.parquet (created: 2025-04-27 22:13:59.295000+00:00)
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:160] - find_latest_file_in_gcs() - Latest file found (by timestamp): gs://miguelsiloli-housing-data/staging/imovirtual/staging_imovirtual_listings_2025-05-02.parquet
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:161] - find_latest_file_in_gcs() -   Created: 2025-05-02 13:02:59.994000+00:00
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:162] - find_latest_file_in_gcs() -   Updated: 2025-05-02 13:02:59.994000+00:00
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:163] - find_latest_file_in_gcs() -   Size: 3520723 bytes
+2025-05-02 14:06:48,782 - INFO - [gcs_api.py:188] - read_parquet_from_gcs() - Reading Parquet file from GCS: gs://miguelsiloli-housing-data/staging/imovirtual/staging_imovirtual_listings_2025-05-02.parquet
+2025-05-02 14:06:48,817 - INFO - [gcs_api.py:65] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 14:06:49,528 - INFO - [gcs_api.py:217] - read_parquet_from_gcs() - Successfully read Parquet file with GCS client: 2300 rows
+2025-05-02 14:06:49,528 - INFO - [gcs_api.py:236] - process_data() - Starting transformation for 2300 raw records.
+2025-05-02 14:06:49,568 - ERROR - [gcs_api.py:334] - process_data() - Missing expected column in source DataFrame: 'id'
+Traceback (most recent call last):
+  File "/home/miguel/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/miguel/Projects/imovirtual/imovirtual/events/gcs_daily_incremental_load/gcs_api.py", line 242, in process_data
+    transformed_df['id'] = df['id'].astype(str)
+                           ~~^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/miguel/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'id'
+2025-05-02 14:10:55,839 - INFO - [main.py:36] - <module>() - Using bucket: miguelsiloli-housing-data
+2025-05-02 14:10:55,839 - INFO - [main.py:37] - <module>() - Using subfolder path: staging/imovirtual
+2025-05-02 14:10:55,839 - INFO - [gcs_api.py:115] - find_latest_file_in_gcs() - Searching for latest '.parquet' file by timestamp in: gs://miguelsiloli-housing-data/staging/imovirtual/
+2025-05-02 14:10:55,879 - INFO - [gcs_api.py:65] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 14:10:56,701 - INFO - [gcs_api.py:151] - find_latest_file_in_gcs() - Top 5 latest files by timestamp:
+2025-05-02 14:10:56,701 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   1. staging/imovirtual/imovirtual_2025-05-02.parquet (created: 2025-05-02 07:18:31.738000+00:00)
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   2. staging/imovirtual/imovirtual_2025-05-01.parquet (created: 2025-05-01 07:18:08.722000+00:00)
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   3. staging/imovirtual/imovirtual_2025-04-30.parquet (created: 2025-04-30 22:07:19.745000+00:00)
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   4. staging/imovirtual/imovirtual_2025-04-27.parquet (created: 2025-04-27 22:13:59.295000+00:00)
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   5. staging/imovirtual/imovirtual_2025-04-26.parquet (created: 2025-04-26 17:49:40.964000+00:00)
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:160] - find_latest_file_in_gcs() - Latest file found (by timestamp): gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-05-02.parquet
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:161] - find_latest_file_in_gcs() -   Created: 2025-05-02 07:18:31.738000+00:00
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:162] - find_latest_file_in_gcs() -   Updated: 2025-05-02 07:18:31.738000+00:00
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:163] - find_latest_file_in_gcs() -   Size: 5063676 bytes
+2025-05-02 14:10:56,702 - INFO - [gcs_api.py:188] - read_parquet_from_gcs() - Reading Parquet file from GCS: gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-05-02.parquet
+2025-05-02 14:10:56,733 - INFO - [gcs_api.py:65] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 14:10:58,052 - INFO - [gcs_api.py:215] - read_parquet_from_gcs() - Successfully read Parquet file with GCS client: 13607 rows
+2025-05-02 14:10:58,052 - INFO - [gcs_api.py:234] - process_data() - Starting transformation for 13607 raw records.
+2025-05-02 14:10:58,213 - INFO - [gcs_api.py:326] - process_data() - Successfully transformed data. Resulting shape: (13607, 39)
+2025-05-02 14:10:58,213 - INFO - [gcs_api.py:234] - process_data() - Starting transformation for 13607 raw records.
+2025-05-02 14:10:58,304 - INFO - [gcs_api.py:326] - process_data() - Successfully transformed data. Resulting shape: (13607, 39)
+2025-05-02 14:10:58,350 - INFO - [gcs_api.py:83] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-05-02 14:10:58,969 - INFO - [gcs_api.py:448] - check_existing_keys_in_bigquery() - Creating temporary lookup table with 6210 key pairs
+2025-05-02 14:11:03,111 - INFO - [gcs_api.py:470] - check_existing_keys_in_bigquery() - Checking for existing key pairs in BigQuery
+2025-05-02 14:11:04,223 - INFO - [gcs_api.py:479] - check_existing_keys_in_bigquery() - Found 0 existing key pairs in BigQuery
+2025-05-02 14:11:04,314 - INFO - [gcs_api.py:484] - check_existing_keys_in_bigquery() - Deleted temporary table poised-space-456813-t0.staging_housing_temp.temp_lookup_1746191458
+2025-05-02 14:11:04,314 - INFO - [gcs_api.py:507] - filter_out_duplicates() - No existing keys found - keeping all rows
+2025-05-02 14:11:04,314 - INFO - [gcs_api.py:360] - load_to_bigquery() - Loading data to BigQuery table: poised-space-456813-t0.staging_housing.staging
+2025-05-02 14:11:04,346 - INFO - [gcs_api.py:83] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-05-02 14:11:08,835 - INFO - [gcs_api.py:378] - load_to_bigquery() - Loaded 13607 rows to poised-space-456813-t0.staging_housing.staging
+2025-05-02 14:11:08,836 - INFO - [gcs_api.py:379] - load_to_bigquery() - Table now has 578425 rows total
+2025-05-02 14:11:08,836 - INFO - [main.py:73] - <module>() - Processing completed successfully
+2025-05-02 16:31:14,709 - INFO - [main.py:36] - <module>() - Using bucket: miguelsiloli-housing-data
+2025-05-02 16:31:14,721 - INFO - [main.py:37] - <module>() - Using subfolder path: staging/imovirtual
+2025-05-02 16:31:14,721 - INFO - [gcs_api.py:115] - find_latest_file_in_gcs() - Searching for latest '.parquet' file by timestamp in: gs://miguelsiloli-housing-data/staging/imovirtual/
+2025-05-02 16:31:14,755 - INFO - [gcs_api.py:65] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 16:31:15,603 - INFO - [gcs_api.py:151] - find_latest_file_in_gcs() - Top 5 latest files by timestamp:
+2025-05-02 16:31:15,603 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   1. staging/imovirtual/imovirtual_2025-05-02.parquet (created: 2025-05-02 13:53:08.384000+00:00)
+2025-05-02 16:31:15,603 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   2. staging/imovirtual/imovirtual_2025-05-01.parquet (created: 2025-05-01 07:18:08.722000+00:00)
+2025-05-02 16:31:15,603 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   3. staging/imovirtual/imovirtual_2025-04-30.parquet (created: 2025-04-30 22:07:19.745000+00:00)
+2025-05-02 16:31:15,603 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   4. staging/imovirtual/imovirtual_2025-04-27.parquet (created: 2025-04-27 22:13:59.295000+00:00)
+2025-05-02 16:31:15,603 - INFO - [gcs_api.py:154] - find_latest_file_in_gcs() -   5. staging/imovirtual/imovirtual_2025-04-26.parquet (created: 2025-04-26 17:49:40.964000+00:00)
+2025-05-02 16:31:15,603 - INFO - [gcs_api.py:160] - find_latest_file_in_gcs() - Latest file found (by timestamp): gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-05-02.parquet
+2025-05-02 16:31:15,603 - INFO - [gcs_api.py:161] - find_latest_file_in_gcs() -   Created: 2025-05-02 13:53:08.384000+00:00
+2025-05-02 16:31:15,604 - INFO - [gcs_api.py:162] - find_latest_file_in_gcs() -   Updated: 2025-05-02 13:53:08.384000+00:00
+2025-05-02 16:31:15,604 - INFO - [gcs_api.py:163] - find_latest_file_in_gcs() -   Size: 5023967 bytes
+2025-05-02 16:31:15,604 - INFO - [gcs_api.py:188] - read_parquet_from_gcs() - Reading Parquet file from GCS: gs://miguelsiloli-housing-data/staging/imovirtual/imovirtual_2025-05-02.parquet
+2025-05-02 16:31:15,635 - INFO - [gcs_api.py:65] - get_storage_client() - Creating storage client for project: poised-space-456813-t0
+2025-05-02 16:31:16,736 - INFO - [gcs_api.py:215] - read_parquet_from_gcs() - Successfully read Parquet file with GCS client: 13530 rows
+2025-05-02 16:31:16,736 - INFO - [gcs_api.py:234] - process_data() - Starting transformation for 13530 raw records.
+2025-05-02 16:31:16,900 - INFO - [gcs_api.py:326] - process_data() - Successfully transformed data. Resulting shape: (13530, 39)
+2025-05-02 16:31:16,900 - INFO - [gcs_api.py:234] - process_data() - Starting transformation for 13530 raw records.
+2025-05-02 16:31:16,989 - INFO - [gcs_api.py:326] - process_data() - Successfully transformed data. Resulting shape: (13530, 39)
+2025-05-02 16:31:17,024 - INFO - [gcs_api.py:83] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-05-02 16:31:17,486 - INFO - [gcs_api.py:448] - check_existing_keys_in_bigquery() - Creating temporary lookup table with 6170 key pairs
+2025-05-02 16:31:20,784 - INFO - [gcs_api.py:470] - check_existing_keys_in_bigquery() - Checking for existing key pairs in BigQuery
+2025-05-02 16:31:23,035 - INFO - [gcs_api.py:479] - check_existing_keys_in_bigquery() - Found 13316 existing key pairs in BigQuery
+2025-05-02 16:31:23,120 - INFO - [gcs_api.py:484] - check_existing_keys_in_bigquery() - Deleted temporary table poised-space-456813-t0.staging_housing_temp.temp_lookup_1746199876
+2025-05-02 16:31:23,227 - INFO - [gcs_api.py:530] - filter_out_duplicates() - Filtered out 13269 duplicate rows, keeping 261 new rows
+2025-05-02 16:31:23,228 - INFO - [gcs_api.py:360] - load_to_bigquery() - Loading data to BigQuery table: poised-space-456813-t0.staging_housing.staging
+2025-05-02 16:31:23,259 - INFO - [gcs_api.py:83] - get_bigquery_client() - Creating BigQuery client for project: poised-space-456813-t0
+2025-05-02 16:31:27,207 - INFO - [gcs_api.py:378] - load_to_bigquery() - Loaded 261 rows to poised-space-456813-t0.staging_housing.staging
+2025-05-02 16:31:27,207 - INFO - [gcs_api.py:379] - load_to_bigquery() - Table now has 578686 rows total
+2025-05-02 16:31:27,207 - INFO - [main.py:73] - <module>() - Processing completed successfully

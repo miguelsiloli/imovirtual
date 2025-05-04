@@ -198,8 +198,6 @@ def read_parquet_from_gcs(file_path: str) -> pd.DataFrame:
     bucket_name, blob_name = path_parts
     
     try:
-        # Use GCS client directly without trying the pandas/pyarrow integration
-        from google.cloud import storage
         
         storage_client = get_storage_client()
         bucket = storage_client.bucket(bucket_name)

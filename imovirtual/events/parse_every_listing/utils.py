@@ -47,11 +47,11 @@ def get_gcs_credentials_from_env() -> Optional[service_account.Credentials]:
             "AUTH_PROVIDER_X509_CERT_URL", "CLIENT_X509_CERT_URL"
         ]
         if not all(os.getenv(var) for var in required_vars):
-            log_error("GCS credential environment variables not found during credential creation.")
+            logger.info("GCS credential environment variables not found during credential creation.")
             return None
         private_key = os.getenv("PRIVATE_KEY", "").replace('\\n', '\n')
         if not private_key:
-            log_error("PRIVATE_KEY environment variable is missing or empty.")
+            logger.info("PRIVATE_KEY environment variable is missing or empty.")
             return None
 
         creds_info = {
@@ -68,14 +68,14 @@ def get_gcs_credentials_from_env() -> Optional[service_account.Credentials]:
         }
         missing_cred_fields = [k for k, v in creds_info.items() if not v]
         if missing_cred_fields:
-            log_error(f"Missing credential fields loaded from environment: {missing_cred_fields}")
+            logger.info(f"Missing credential fields loaded from environment: {missing_cred_fields}")
             return None
 
         credentials = service_account.Credentials.from_service_account_info(creds_info)
-        log_info("Successfully created GCS credentials object from environment.")
+        logger.info("Successfully created GCS credentials object from environment.")
         return credentials
     except Exception as e:
-        log_error(f"Failed to create GCS credentials object: {e}", exc_info=True)
+        logger.info(f"Failed to create GCS credentials object: {e}", exc_info=True)
         return None
 
 # --- Prefect Tasks for Environment and GCS I/O ---
