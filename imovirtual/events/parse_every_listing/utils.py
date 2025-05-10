@@ -183,6 +183,50 @@ def read_slugs_from_gcs_parquet(
         raise
 
 
+def _patch_empty_nested_experiments_recursive(data_item: Any):
+    """
+    Recursively finds 'experiments' keys in nested dicts/lists.
+    If their value is an empty dict, it adds a dummy child field.
+    Modifies data_item in-place.
+    """
+    # logger = get_run_logger() # Get logger for potential debug messages
+    if isinstance(data_item, dict):
+        for key, value in list(data_item.items()): # Iterate over a copy of items if modifying dict
+            if key == 'experiments':
+                if isinstance(value, dict) and not value: # Empty dict {}
+                    data_item[key] = {'_dummy_child_': None} # Add dummy child
+                    # logger.debug(f"Patched empty nested 'experiments' dict by adding '_dummy_child_'.")
+                elif isinstance(value, list):
+                    # Handle if 'experiments' is a list that might contain empty dicts
+                    # or if the list itself is empty and infers to list<struct<>>
+                    new_list = []
+                    modified_list = False
+                    for elem in value:
+                        if isinstance(elem, dict) and not elem:
+                            new_list.append({'_dummy_child_': None})
+                            modified_list = True
+                            # logger.debug("Patched empty dict within 'experiments' list.")
+                        else:
+                            _patch_empty_nested_experiments_recursive(elem) # Recurse into list elements
+                            new_list.append(elem)
+                    if modified_list:
+                        data_item[key] = new_list
+                    elif not value and key == 'experiments': # Empty list for 'experiments' key
+                        # This case is tricky. If Arrow infers list<struct<>>, an empty list
+                        # might be problematic. Converting to None or list with dummy struct.
+                        # For safety, let's make it a list with one dummy struct if it's empty.
+                        # data_item[key] = [{'_dummy_child_': None}]
+                        # logger.debug(f"Replaced empty list for 'experiments' with list containing a dummy struct.")
+                        # Alternative: set to None if that's acceptable for your schema
+                        data_item[key] = None
+                        # logger.debug(f"Replaced empty list for 'experiments' with None.")
+            elif isinstance(value, (dict, list)): # Recurse for other keys
+                _patch_empty_nested_experiments_recursive(value)
+    elif isinstance(data_item, list):
+        for item in data_item:
+            _patch_empty_nested_experiments_recursive(item)
+
+
 @task
 def save_data_to_gcs(
     data_list: List[Dict[str, Any]],
@@ -191,6 +235,7 @@ def save_data_to_gcs(
 ) -> str:
     """
     Saves list of dicts as Parquet to GCS.
+    Handles nested empty 'experiments' dicts by adding a dummy child.
     Uses GCS_OUTPUT_PATH_PREFIX from config.
     """
     logger = get_run_logger()
@@ -203,18 +248,39 @@ def save_data_to_gcs(
              logger.error("GCS_BUCKET_NAME was not provided.")
              raise ValueError("GCS_BUCKET_NAME is required.")
 
+        # --- BEGIN PREPROCESSING STEP ---
+        logger.info(f"Preprocessing {len(data_list)} records to handle empty 'experiments' structs/lists...")
+        processed_count = 0
+        for record_dict in data_list:
+            # Make a shallow copy if you want to preserve original data_list items,
+            # though in-place modification is usually fine here.
+            _patch_empty_nested_experiments_recursive(record_dict)
+            processed_count +=1
+        logger.info(f"Finished preprocessing {processed_count} records.")
+        # --- END PREPROCESSING STEP ---
+
         logger.info(f"Converting {len(data_list)} records to DataFrame...")
         df_output = pd.DataFrame(data_list)
         logger.info(f"DataFrame shape: {df_output.shape}")
 
-        column_to_drop = 'experiments'
-        if column_to_drop in df_output.columns:
-            df_output = df_output.drop("experiments", axis = 1)
-            logger.info(f"Dropping '{column_to_drop}' column before saving to Parquet.")
+        # This part for dropping a TOP-LEVEL 'experiments' column might still be useful
+        # if 'experiments' can sometimes be a top-level column you want to remove entirely.
+        # However, the primary error was likely due to a NESTED 'experiments' field.
+        column_to_drop_top_level = 'experiments'
+        if column_to_drop_top_level in df_output.columns:
+            # If the 'experiments' column was top-level and an empty struct,
+            # the _patch_empty_nested_experiments_recursive function would have already
+            # added a dummy child to it (e.g., {'_dummy_child_': None}).
+            # Dropping it here means you want to remove it regardless.
+            df_output = df_output.drop(column_to_drop_top_level, axis=1)
+            logger.info(f"Dropped top-level column '{column_to_drop_top_level}' from DataFrame.")
+        else:
+            logger.info(f"Top-level column '{column_to_drop_top_level}' not found in DataFrame, no action taken to drop it.")
+
 
         today_date_str = datetime.now(timezone.utc).strftime('%Y-%m-%d')
         output_filename = f"staging_imovirtual_listings_{today_date_str}.parquet"
-        clean_prefix = GCS_OUTPUT_PATH_PREFIX.strip('/') # Use imported constant
+        clean_prefix = GCS_OUTPUT_PATH_PREFIX.strip('/')
         blob_name = f"{clean_prefix}/{output_filename}"
         gcs_output_uri = f"gs://{gcs_bucket_name}/{blob_name}"
 
