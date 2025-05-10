@@ -65,10 +65,10 @@ jobs:
 
       - name: Set up Prefect profile
         run: |
-          prefect profile create github-actions
-          prefect config set PREFECT_API_URL="${{ secrets.PREFECT_API_URL }}"
-          prefect config set PREFECT_API_KEY="${{ secrets.PREFECT_API_KEY }}"
-          prefect profile use github-actions
+          # prefect profile create github-actions
+          # prefect config set PREFECT_API_URL="${{ secrets.PREFECT_API_URL }}"
+          # prefect config set PREFECT_API_KEY="${{ secrets.PREFECT_API_KEY }}"
+          # prefect profile use github-actions
 
       - name: Run events/gcs_daily_incremental_load/main.py
         run: python imovirtual/events/gcs_daily_incremental_load/gcs_with_prefect_v2.py
