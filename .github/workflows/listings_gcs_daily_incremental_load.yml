@@ -1,0 +1,70 @@
+name: Listings GCS Daily Incremental Load
+
+on:
+  schedule:
+    # Run at 12:00 AM UTC every day
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
+    # if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10.6'
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+      - name: Install dependencies
+        run: |
+          pip install -r imovirtual/events/listings_gcs_daily_incremental_load/requirements.txt
+
+      - name: Create .env file
+        run: |
+          echo "TYPE=${{ secrets.TYPE }}" > .env
+          echo "PROJECT_ID=${{ secrets.PROJECT_ID }}" >> .env
+          echo "PRIVATE_KEY_ID=${{ secrets.PRIVATE_KEY_ID }}" >> .env
+          echo "PRIVATE_KEY=${{ secrets.PRIVATE_KEY }}" >> .env
+          echo "CLIENT_EMAIL=${{ secrets.CLIENT_EMAIL }}" >> .env
+          echo "CLIENT_ID=${{ secrets.CLIENT_ID }}" >> .env
+          echo "AUTH_URI=${{ secrets.AUTH_URI }}" >> .env
+          echo "TOKEN_URI=${{ secrets.TOKEN_URI }}" >> .env
+          echo "AUTH_PROVIDER_X509_CERT_URL=${{ secrets.AUTH_PROVIDER_X509_CERT_URL }}" >> .env
+          echo "CLIENT_X509_CERT_URL=${{ secrets.CLIENT_X509_CERT_URL }}" >> .env
+          echo "GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}" >> .env
+          echo "GCS_SUBFOLDER_PATH=${{ secrets.GCS_SUBFOLDER_PATH }}" >> .env
+          
+          # Added Prefect credentials
+          echo "PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}" >> .env
+          echo "PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}" >> .env
+          echo "PREFECT_API_DATABASE_CONNECTION_URL=${{ secrets.PREFECT_API_DATABASE_CONNECTION_URL }}" >> .env
+          echo "PREFECT_API_DATABASE_CONNECT_ARGS=${{ secrets.PREFECT_API_DATABASE_CONNECT_ARGS }}" >> .env
+          
+          # Added additional GCP configuration
+          echo "GCP_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}" >> .env
+          echo "GCP_REGION=${{ secrets.GCP_REGION }}" >> .env
+          echo "BQ_PROJECT_ID=${{ secrets.BQ_PROJECT_ID }}" >> .env
+          echo "BQ_DATASET_ID=${{ secrets.BQ_DATASET_ID }}" >> .env
+          echo "BQ_TABLE_ID=${{ secrets.BQ_TABLE_ID }}" >> .env
+          echo "BQ_TABLE_FULL_ID=${{ secrets.BQ_TABLE_FULL_ID }}" >> .env
+          echo "BQ_WRITE_DISPOSITION=${{ secrets.BQ_WRITE_DISPOSITION }}" >> .env
+          echo "BQ_CREATE_DISPOSITION=${{ secrets.BQ_CREATE_DISPOSITION }}" >> .env
+          echo "BQ_SCHEMA_UPDATE_OPTIONS=${{ secrets.BQ_SCHEMA_UPDATE_OPTIONS }}" >> .env
+          echo "LOG_LEVEL=${{ secrets.LOG_LEVEL }}" >> .env
+        shell: bash
+
+      - name: Set up Prefect profile
+        run: |
+          # prefect profile create github-actions
+          # prefect config set PREFECT_API_URL="${{ secrets.PREFECT_API_URL }}"
+          # prefect config set PREFECT_API_KEY="${{ secrets.PREFECT_API_KEY }}"
+          # prefect profile use github-actions
+
+      - name: Run events/listings_gcs_daily_incremental_load/main.py
+        run: python imovirtual/events/listings_gcs_daily_incremental_load/main.py
+        shell: bash
